@@ -8,4 +8,5 @@ def getWeather(weather):
     
     data = instead.json()
     return {
-        temperature = data[temperature]
+        "temperature": data["temperature"],
+        
