@@ -15,4 +15,4 @@ def getWeather(weather):
     }
 
 weather = getWeather("temperature")
-print(weather)
+print(weather) 
