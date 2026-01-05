@@ -13,5 +13,5 @@ def getWeather(city):
         "humidity": data["RelativeHumidity"],
     }
 
-weather = getWeather("insert whatever here yo")
+weather = getWeather("insert whatever here")
 print(weather) 
