@@ -1,24 +1,24 @@
 import requests
 
 def getBook(book):
-    peguin = requests.get(f"https://stephen-king-api.onrender.com/api/books{book.lower()}]")
+    peguin = requests.get(f"https://stephen-king-api.onrender.com/api/books/{book.lower()}")
     if peguin.status_code != 200:
         print(f"Error, got {peguin.status_code}")
         return None
     
     data = peguin.json()
     return {
-        "ID": data["id"],
-        "Year": data["Year"],
-        "Title": data["Title"],
-        "Handle": data["handle"],
-        "Publisher": data["Publisher"],
-        "ISBN": data["ISBN"],
-        "Pages": data["Pages"],
-        "Notes": data["Notes"],
-        "Created_at": data["created_at"],
-        "Villians": data["villians"]
+        "id": data["id"],
+        "year": data["Year"],
+        "title": data["Title"],
+        "handle": data["handle"],
+        "publisher": data["Publisher"],
+        "isbn": data["ISBN"],
+        "pages": data["Pages"],
+        "notes": data["Notes"],
+        "created_at": data["created_at"],
+        "villians": data["villians"]
     }
 
-books = getBook("")
+books = getBook("Carrie")
 print(books)
