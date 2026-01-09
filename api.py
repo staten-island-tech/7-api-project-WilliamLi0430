@@ -1,7 +1,7 @@
 import requests
 
 def getBook(villian):
-    peguin = requests.get(f"https://stephen-king-api.onrender.com/api/book/{villian.lower()}")
+    peguin = requests.get(f"https://stephen-king-api.onrender.com/api/books/{villian.lower()}")
     if peguin.status_code != 200:
         print(f"Error, got {peguin.status_code}")
         return None
