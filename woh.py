@@ -1,16 +1,43 @@
 import tkinter as tk
+import requests
 
-def say_hello():
-    print("Hello!")
+def getCharacters():
+    input = entry.get().strip().lower()
 
-root = tk.Tk()
-root.title("Example")
-root.geometry("500x500")
+    if not input:
+        result.config("Please enter a character name.")
+        return
+    
+    response = requests.get(f"https://stephen-king-api.onrender.com/api/villains")
+    if response.status_code != 200:
+        print(f"Error, got {response.status_code}")
+        return None
+    
+    data = response.json()["data"]
+    
 
-label = tk.Label(root, text="Search Stephen King Characters")
-label.pack(pady=10)
+    for villain in data:
+        if input in villain["name"].lower():
+            result.config(text=f"Name: {villain['name']}\nBook: {villain['books']}")
+            return
+        
 
-button = tk.Button(root, text="Click me", command=say_hello)
-button.pack()
+booking = tk.Tk()
+booking.title("Stephen King book characters")
+booking.geometry("500x300")
 
-root.mainloop()
+prompt = tk.Label(booking, text="Which character would you like to find?", font=("Arial", 14))
+prompt.pack(pady=10)
+
+entry = tk.Entry(booking, font=("Arial", 14), width=40)
+entry.pack(pady=5)
+
+searchButton = tk.Button(booking, text="Find character", font=("Arial", 14), command=getCharacters)
+searchButton.pack(pady=10)
+
+result = tk.Label(booking, text="", font=("Arial", 15), wraplength=450, justify="center", fg="purple")
+result.pack(pady=10)
+
+
+
+booking.mainloop()
