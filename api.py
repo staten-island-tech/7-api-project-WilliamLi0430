@@ -4,7 +4,7 @@ import requests
 def open_search_popup():
     popup = tk.Toplevel(root)
     popup.title("Search")
-    popup.geometry("500x500")
+    popup.geometry("500x300")
 
     tk.Label(
         popup,
@@ -24,7 +24,7 @@ def open_search_popup():
         font=("Arial", 12),
         wraplength=450,
         justify="center",
-        fg="purple"
+        fg="black"
     )
     result_label.pack(pady=10)
 
@@ -44,7 +44,7 @@ def open_search_popup():
 
         for villain in data:
             if name in villain["name"].lower():
-                result_label.config(text=f"Name: {villain['name']}\nBook(s): {', '.join(villain['books'])}")
+                result_label.config(text=f"Name: {villain['name']}\nBooks this character is in: {', '.join(villain['books'])}")
                 return
 
         result_label.config(text="No matching character found.")
@@ -58,7 +58,7 @@ def open_search_popup():
 
 
 root = tk.Tk()
-root.geometry("500x300")
+root.geometry("600x400")
 
 tk.Button(
     root,
